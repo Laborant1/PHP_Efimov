@@ -4,7 +4,7 @@
 <p>Вариант 4
 <p>  
   <?php
-$a= 10; $b = true;
+$a= false; $b = "false";
 if ($a) { echo '$a='."$a - истина<br>"; }
 else { echo '$a='."$a - ложь<br>"; }
 if ($b) { echo '$b='."$b - истина<br>"; }
