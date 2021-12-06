@@ -1,3 +1,6 @@
+<html>
+<head><title>Efimov Ivan</title></head>
+</html>
 <?php
  $var1= '3';
  $var2 = 5;

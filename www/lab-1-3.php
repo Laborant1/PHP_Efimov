@@ -1,3 +1,6 @@
+<html>
+<head><title>Efimov Ivan</title></head>
+</html>
 <p>Пример отображения числа e
 <p>  
    <?php

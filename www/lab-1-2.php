@@ -1,3 +1,6 @@
+<html>
+<head><title>Efimov Ivan</title></head>
+</html>
 <p> Арифметические операции:
 <p>
 <?php
