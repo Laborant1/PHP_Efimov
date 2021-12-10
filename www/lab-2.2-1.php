@@ -1,3 +1,6 @@
+<html>
+<head><title>Efimov Ivan</title></head>
+</html>
 <?php
  $treug=array(1,2,3,4,5,6,7,8,9,10);
  $kvd=array(1,2,3,4,5,6,7,8,9,10);
