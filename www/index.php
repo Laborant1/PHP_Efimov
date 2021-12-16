@@ -35,4 +35,5 @@
 <ul>
 <li><a href="/f1.html">Упражнение 3-1</a></li>
 <li><a href="/f2.html">Упражнение 3-2</a></li>
+<li><a href="/f3.html">Упражнение 3-3</a></li>
 </ul>
