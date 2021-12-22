@@ -35,4 +35,56 @@ $num_rows = mysqli_num_rows($result); // число записей в табли
 print("<P>Всего автомобилей: $num_rows </p>");
 ?>
 <p> <a href="new.php"> Добавить автомобиль </a>
+
+<h2>Список автосалонов:</h2>
+<table border="1">
+<tr> 
+<th> ID </th> <th> Название </th> <th> Адрес </th>
+<th> Редактировать </th> <th> Уничтожить </th> </tr>
+<?php
+$result=mysqli_query($link,"SELECT *
+FROM Auto_salon"); // запрос на выборку сведений о салонах
+while ($row=mysqli_fetch_array($result)){// для каждой строки из запроса
+echo "<tr>";
+echo "<td>" . $row['salon_id'] . "</td>";
+echo "<td>" . $row['salon_name'] . "</td>";
+echo "<td>" . $row['salon_add'] . "</td>";
+echo "<td><a href='edit_salon.php?salon_id=" . $row['salon_id']
+. "'>Редактировать</a></td>"; // запуск скрипта для редактирования
+echo "<td><a href='delete.php?id=" . $row['salon_id']
+. "&table=Auto_salon&ni=salon_'>Удалить</a></td>"; // запуск скрипта для удаления записи
+echo "</tr>";
+}
+print "</table>";
+$num_rows = mysqli_num_rows($result); // число записей в таблице БД
+print("<P>Всего салонов: $num_rows </p>");
+?>
+<p> <a href="new_salon.php"> Добавить салон </a>
+
+<h2>Автомобили в наличии:</h2>
+<table border="1">
+<tr> 
+<th> ID </th> <th> ID автомобиля </th> <th> ID автосалона </th> <th> Стоимость </th>
+<th> Редактировать </th> <th> Уничтожить </th> </tr>
+<?php
+$result=mysqli_query($link,"SELECT *
+FROM Auto_nal"); // запрос на выборку сведений о наличии автомобилей
+while ($row=mysqli_fetch_array($result)){// для каждой строки из запроса
+echo "<tr>";
+echo "<td>" . $row['nal_id'] . "</td>";
+echo "<td>" . $row['nal_id_auto'] . "</td>";
+echo "<td>" . $row['nal_id_salon'] . "</td>";
+echo "<td>" . $row['nal_sum'] . "</td>";
+
+echo "<td><a href='edit_nal.php?nal_id=" . $row['nal_id']
+. "'>Редактировать</a></td>"; // запуск скрипта для редактирования
+echo "<td><a href='delete.php?id=" . $row['nal_id']
+. "&table=Auto_nal&ni=nal_'>Удалить</a></td>"; // запуск скрипта для удаления записи
+echo "</tr>";
+}
+print "</table>";
+$num_rows = mysqli_num_rows($result); // число записей в таблице БД
+print("<P>Всего записей: $num_rows </p>");
+?>
+<p> <a href="new_nal.php"> Добавить запись </a>
 </body> </html>

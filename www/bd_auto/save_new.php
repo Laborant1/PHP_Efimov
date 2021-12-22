@@ -13,13 +13,22 @@ $sql_add = "INSERT INTO Auto SET auto_mar='" . $_GET['mar']
 "', auto_trans='".$_GET['trans']."', auto_ob='".$_GET['ob'].
 "', auto_sum='".$_GET['sum']. "'"; break;
 }
+
+     case 'Автосалон':{
+$sql_add = "INSERT INTO Auto_salon SET salon_name='" . $_GET['name']
+."', salon_add='".$_GET['add']."'"; break;
+}
+         
+    case 'Наличие':{
+$sql_add = "INSERT INTO Auto_nal SET nal_id_auto='" . $_GET['id_auto']
+."', nal_id_salon='".$_GET['id_salon']."', nal_sum='".$_GET['sum']."'"; break;
+}
   
  }
 mysqli_query($link,$sql_add); // Выполнение запроса
 if (mysqli_affected_rows($link,)>0) // если нет ошибок при выполнении запроса
-{ print "<p>Автомобиль добавлен.";
-print "<p><a href=\"index.php\"> Вернуться к списку
-автомобилей </a>"; }
+{ print "<p>Успешно сохранено.";
+print "<p><a href=\"index.php\"> Вернуться к списку</a>"; }
 else { print "Ошибка сохранения. <a href=\"index.php\">
 Вернуться к списку </a>"; }
 ?>
