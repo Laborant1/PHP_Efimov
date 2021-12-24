@@ -87,4 +87,5 @@ $num_rows = mysqli_num_rows($result); // число записей в табли
 print("<P>Всего записей: $num_rows </p>");
 ?>
 <p> <a href="new_nal.php"> Добавить запись </a>
+<p><a href="gen_pdf.php"> Скачать PDF </a><br><a href="gen_xls.php"> Скачать XLS </a><br>
 </body> </html>
