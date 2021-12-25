@@ -1,4 +1,12 @@
 <?php
+session_start();
+if (!$_SESSION['admin']) {
+    unset($_SESSION['user']);//закрытие сессии по логину 
+session_destroy();//удаление сессии 
+    header('Location: auth.php');
+}
+?>
+<?php
 // Подключение к базе данных:
 $link = mysqli_connect("localhost", "f0607139_username","password") or die ("Невозможно
 подключиться к серверу"); // установление соединения с сервером
@@ -23,6 +31,14 @@ $sql_add = "INSERT INTO Auto_salon SET salon_name='" . $_GET['name']
 $sql_add = "INSERT INTO Auto_nal SET nal_id_auto='" . $_GET['id_auto']
 ."', nal_id_salon='".$_GET['id_salon']."', nal_sum='".$_GET['sum']."'"; break;
 }
+
+case 'прил':{
+      $sql_add = "INSERT INTO apps SET l_id='" . $_GET['l_id']
+."', dev_id='".$_GET['dev_id']."', app_date='"
+.$_GET['date']."', app_ver='".$_GET['ver'].
+"', app_name='".$_GET['name']. "'";
+      break;
+  }
   
  }
 mysqli_query($link,$sql_add); // Выполнение запроса

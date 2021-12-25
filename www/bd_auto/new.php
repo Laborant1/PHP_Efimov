@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!$_SESSION['admin']) {
+    unset($_SESSION['user']);//закрытие сессии по логину 
+session_destroy();//удаление сессии 
+    header('Location: auth.php');
+}
+?>
 <html>
 <head> <title> Добавление нового автомобиля Efimov Ivan</title> </head>
 <body>

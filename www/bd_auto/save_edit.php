@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!$_SESSION['admin']) {
+    unset($_SESSION['user']);//закрытие сессии по логину 
+session_destroy();//удаление сессии 
+    header('Location: auth.php');
+}
+?>
 <html> <body>
 <?php
 $link = mysqli_connect("localhost", "f0607139_username","password") or die ("Невозможно
@@ -24,7 +32,14 @@ $zapros="UPDATE Auto_nal SET nal_id_auto='".$_GET['id_auto'].
 "', nal_id_salon='".$_GET['id_salon']."', nal_sum='".$_GET['sum']."' WHERE nal_id="
 .$_GET['id']; break;}
     
+    case 'users': {
+        echo $_GET['id'];
+         $zapros="UPDATE users SET username='".$_GET['username'].
+"', password='".md5($_GET['password'])."', type='".$_GET['role']."' WHERE id=".$_GET['id'];
+        break;
+    }
 }
+
 mysqli_query($link,$zapros);
 if (mysqli_affected_rows($link)>0) {
 echo 'Все сохранено. <a href="index.php"> Вернуться к списку</a>'; }

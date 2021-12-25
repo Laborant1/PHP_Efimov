@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!$_SESSION['admin']) {
+    unset($_SESSION['user']);//закрытие сессии по логину 
+session_destroy();//удаление сессии 
+    header('Location: auth.php');
+}
+?>
 <html>
 <head> <title> Сведения о автомобилях Efimov Ivan </title> </head>
 <body>
@@ -87,5 +95,45 @@ $num_rows = mysqli_num_rows($result); // число записей в табли
 print("<P>Всего записей: $num_rows </p>");
 ?>
 <p> <a href="new_nal.php"> Добавить запись </a>
+
+<p> <a href="register.php"> Добавить пользователя </a><br>
+
+<h2>Список пользователей:</h2>
+<table border="1">
+<tr> 
+<th> ID </th> <th> Никнейм</th> <th> Пароль </th> <th> Роль </th> 
+<th> Редактировать </th> <th> Уничтожить </th> </tr>
+<?php
+$result=mysqli_query($link,"SELECT *
+FROM users"); // запрос на выборку сведений о пользователях
+while ($row=mysqli_fetch_array($result)){// для каждой строки из запроса
+if ($row['type'] == '1'){
+    $role = "Оператор";
+}else {
+    $role = "Админ";
+    
+};
+echo "<tr>";
+echo "<td>" . $row['id'] . "</td>";
+echo "<td>" . $row['username'] . "</td>";
+echo "<td>" . $row['password'] . "</td>";
+echo "<td>" . $role . "</td>";
+if ($role == "Оператор"){
+echo "<td><a href='editusers.php?id=" . $row['id']
+. "'>Редактировать</a></td>"; // запуск скрипта для редактирования
+echo "<td><a href='delete.php?id=" . $row['id']
+. "&table=users&ni='>Удалить</a></td>";} // запуск скрипта для удаления записи
+echo "</tr>";
+}
+print "</table>";
+$num_rows = mysqli_num_rows($result); // число записей в таблице БД
+print("<P>Всего пользователей: $num_rows </p>");
+
+?>
+
+
 <p><a href="gen_pdf.php"> Скачать PDF </a><br><a href="gen_xls.php"> Скачать XLS </a><br>
+
+<p> <a href="/index.php"> На главную </a>
+<p> <a href="close.php"> Выйти из аккаунта </a>
 </body> </html>
