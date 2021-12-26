@@ -32,6 +32,12 @@ $zapros="UPDATE Auto_nal SET nal_id_auto='".$_GET['id_auto'].
 "', nal_id_salon='".$_GET['id_salon']."', nal_sum='".$_GET['sum']."' WHERE nal_id="
 .$_GET['id']; break;}
     
+    case 'users': {
+        echo $_GET['id'];
+         $zapros="UPDATE users SET username='".$_GET['username'].
+"', password='".md5($_GET['password'])."' WHERE id=".$_GET['id'];
+        break;
+    }
 }
 mysqli_query($link,$zapros);
 if (mysqli_affected_rows($link)>0) {
@@ -41,5 +47,7 @@ else { echo 'Ошибка сохранения.<a href="index.php">
 echo ('ID'.$_GET['id'].mysqli_affected_rows($link)); }
 ?>
 </body> </html>
+
+
 
 
