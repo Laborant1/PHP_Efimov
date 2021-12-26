@@ -25,10 +25,21 @@ $id_salon = $st['nal_id_salon'];
 $sum = $st['nal_sum'];
 }
 print "<form action='save_edit.php' metod='get'>";
-print "ID автомобиля: <input name='id_auto' size='20' type='text'
-value='".$id_auto."'>";
-print "<br>ID салона: <input name='id_salon' size='20' type='text'
-value='".$id_salon."'>";
+$sql = "SELECT auto_id,auto_mar,auto_model FROM Auto";
+$result_select = mysqli_query($link,$sql);
+echo "<br>ID автомобиля: <select name = 'id_auto'>";
+while($object = mysqli_fetch_array($result_select,MYSQLI_ASSOC)){
+echo "<option value = '".$object['auto_id']."' >". $object['auto_mar']." ". $object['auto_model']."</option>";
+}
+echo "</select>";
+ 
+$sql = "SELECT salon_id,salon_name FROM Auto_salon";
+$result_select = mysqli_query($link,$sql);
+echo "<br>ID салона: <select name = 'id_salon'>";
+while($object = mysqli_fetch_array($result_select,MYSQLI_ASSOC)){
+echo "<option value = '".$object['salon_id']."' >". $object['salon_name']."</option>";
+}
+echo "</select>";
 print "<br>Стоимость: <input name='sum' type='text'
 value='".$sum."'>";
 
