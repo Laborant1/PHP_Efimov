@@ -24,11 +24,13 @@ mysqli_select_db($link,"f0607139_automob") or die("Нет такой табли�
 <?php
 $result=mysqli_query($link,"SELECT auto_id, auto_mar, auto_model, auto_date, auto_trans, auto_ob, auto_sum FROM Auto"); // запрос на выборку сведений о автомобилях
 while ($row=mysqli_fetch_array($result)){// для каждой строки из запроса
+$date = (new IntlDateFormatter('ru_RU', null, null, null, null, 'd MMM Y '))
+      ->format(new DateTime($row['auto_date']));
 echo "<tr>";
 echo "<td>" . $row['auto_id'] . "</td>";
 echo "<td>" . $row['auto_mar'] . "</td>";
 echo "<td>" . $row['auto_model'] . "</td>";
-echo "<td>" . $row['auto_date'] . "</td>";
+echo "<td>" . $date . "</td>";
 echo "<td>" . $row['auto_trans'] . "</td>";
 echo "<td>" . $row['auto_ob'] . "</td>";
 echo "<td>" . $row['auto_sum'] . "</td>";

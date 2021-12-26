@@ -30,17 +30,12 @@ $aSheet->setCellValue('G1','Название автосалона');
 $aSheet->setCellValue('H1','Адрес');
 $i = 1;
 while ($st = mysqli_fetch_assoc($result)) {
-echo ($st['auto_mar']);
-echo ($st['auto_model']);
-echo ($st['auto_date']);
-echo ($st['auto_trans']);
-echo ($st['auto_sum']);
-echo ($st['salon_name']);
-echo ($st['salon_add']);
+$date = (new IntlDateFormatter('ru_RU', null, null, null, null, 'd MMM Y '))
+      ->format(new DateTime($st['auto_date']));
     $aSheet->setCellValue('A'.($i+1), $i);
     $aSheet->setCellValue('B'.($i+1), $st['auto_mar']);
     $aSheet->setCellValue('C'.($i+1), $st['auto_model']);
-    $aSheet->setCellValue('D'.($i+1), $st['auto_date']);
+    $aSheet->setCellValue('D'.($i+1), $date);
     $aSheet->setCellValue('E'.($i+1), $st['auto_trans']);
     $aSheet->setCellValue('F'.($i+1), $st['auto_sum']);
     $aSheet->setCellValue('G'.($i+1), $st['salon_name']);
@@ -56,4 +51,3 @@ $objWriter = new PHPExcel_Writer_Excel2007($pExcel);
 $objWriter->save('php://output');
 exit;
 ?>
-

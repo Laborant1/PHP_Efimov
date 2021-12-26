@@ -42,11 +42,13 @@ function BasicTable($result)
     $a=1;
     $fill=true;
     while($object = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+        $date = (new IntlDateFormatter('ru_RU', null, null, null, null, 'd MMM Y '))
+      ->format(new DateTime($object['auto_date']));
         $this->SetFillColor(235);
         $this->Cell(12,6,$a,1,'','',$fill);
         $this->Cell(50,6,iconv('utf-8', 'windows-1251',$object['auto_mar']),1,'','',$fill);
         $this->Cell(30,6,iconv('utf-8', 'windows-1251',$object['auto_model']),1,'','',$fill);
-        $this->Cell(50,6,iconv('utf-8', 'windows-1251',$object['auto_date']),1,'','',$fill);
+        $this->Cell(50,6,iconv('utf-8', 'windows-1251',$date),1,'','',$fill);
         $this->Cell(50,6,iconv('utf-8', 'windows-1251',$object['auto_trans']),1,'','',$fill);
         $this->Cell(50,6,iconv('utf-8', 'windows-1251',$object['auto_sum']),1,'','',$fill);
         $this->Cell(35,6,iconv('utf-8', 'windows-1251',$object['salon_name']),1,'','',$fill);

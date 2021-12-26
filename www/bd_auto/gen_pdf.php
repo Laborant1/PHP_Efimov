@@ -13,10 +13,13 @@ $link = mysqli_connect("localhost", "f0607139_username","password") or die ("Н�
 mysqli_query($link,'SET NAMES UTF-8');
 mysqli_select_db($link,"f0607139_automob") or die("Нет такой таблицы!");
 
+
+      
  $result=mysqli_query($link,"select auto_mar, auto_model, auto_date, 
  auto_trans, auto_sum, salon_name, salon_add from Auto_nal left outer JOIN Auto on Auto_nal.nal_id_auto=Auto.auto_id
  left outer JOIN Auto_salon on Auto_nal.nal_id_salon=Auto_salon.salon_id 
  order by Auto.auto_id");
+
 
 $header= array("№ п/п","Марка","Модель","Год выпуска","Трансмиссия","Стоимость", "Название автосалона","Адрес");
 require('FPDF/fpdf.php');
@@ -42,11 +45,13 @@ function BasicTable($result)
     $a=1;
     $fill=true;
     while($object = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+        $date = (new IntlDateFormatter('ru_RU', null, null, null, null, 'd MMM Y '))
+      ->format(new DateTime($object['auto_date']));
         $this->SetFillColor(235);
         $this->Cell(12,6,$a,1,'','',$fill);
         $this->Cell(50,6,iconv('utf-8', 'windows-1251',$object['auto_mar']),1,'','',$fill);
         $this->Cell(30,6,iconv('utf-8', 'windows-1251',$object['auto_model']),1,'','',$fill);
-        $this->Cell(50,6,iconv('utf-8', 'windows-1251',$object['auto_date']),1,'','',$fill);
+        $this->Cell(50,6,iconv('utf-8', 'windows-1251',$date),1,'','',$fill);
         $this->Cell(50,6,iconv('utf-8', 'windows-1251',$object['auto_trans']),1,'','',$fill);
         $this->Cell(50,6,iconv('utf-8', 'windows-1251',$object['auto_sum']),1,'','',$fill);
         $this->Cell(35,6,iconv('utf-8', 'windows-1251',$object['salon_name']),1,'','',$fill);
