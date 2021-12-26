@@ -28,8 +28,7 @@ $role=$st['type'];
 print "<form action='save_edit.php' metod='get'>";
 print "<br>Логин: <input type='text' name='username' size='50' type='text'
 value='".$username."'>";
-print "<br>Пароль: <input name='password' size='50' type='password'
-value='".$password."'>";
+print "<br>Пароль: <input name='password' size='50' type='password'>";
 
 echo "<br>Роль пользователя:<select name = 'role'>";
 echo "<option value = '1' >".'Оператор'."</option>";
